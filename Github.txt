@@ -1,0 +1,5 @@
+Para subir cosas al respotiorio de github 
+git status -> miras los archivos no sincornizados
+git add . -> los subes al commit 
+git commit -m "mensaje aqui" -> con esto subes el comit 
+git push para subir 
