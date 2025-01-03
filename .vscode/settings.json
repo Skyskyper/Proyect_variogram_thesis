@@ -1,0 +1,18 @@
+{
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none",
+        "reportMissingImports": "warning"
+    }
+    
+    ,
+    "python.analysis.extraPaths": [
+        //Users//marsa//OneDrive//GitHub_ordenado  // Añade aquí el directorio raíz de tu proyecto
+    ]
+,
+
+    "python.testing.pytestArgs": [
+        "GSTOOLS-3D"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
