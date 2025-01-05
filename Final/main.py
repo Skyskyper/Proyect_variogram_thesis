@@ -15,11 +15,14 @@ def main():
     
     
     data_rotated = p_rotation.apply_rotation(input_file)
+    print(data_rotated.keys())
     rotated_positions = data_rotated['rotated_positions']
-    print(rotated_positions.keys())
+    print(rotated_positions)
     
     
     
+    
+      
     
 
 
