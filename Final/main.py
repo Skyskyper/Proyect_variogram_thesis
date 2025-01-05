@@ -1,4 +1,4 @@
-from module.common_imports import *
+
 from module import interface 
 from module import Load_file
 from module import p_rotation 

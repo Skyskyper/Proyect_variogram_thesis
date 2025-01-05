@@ -1,5 +1,4 @@
-
-from common_imports import *
+import numpy as np
 
 '''
 def add_ids(rotated_positions):
