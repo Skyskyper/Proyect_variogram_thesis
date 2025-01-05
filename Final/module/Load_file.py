@@ -1,4 +1,4 @@
-import os 
+from module.common_imports import *
 
 def load_data(input_file=None, default_file='test_data.csv'):
     
@@ -11,5 +11,4 @@ def load_data(input_file=None, default_file='test_data.csv'):
     if not os.path.exists(input_file):
         raise FileNotFoundError(f"File not found: {input_file}")
     
-    print(f"Input file: {input_file}")
     return input_file

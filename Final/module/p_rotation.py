@@ -15,6 +15,8 @@ def apply_rotation(input_file):
 
     # Extract VAR and VAR2 columns using global variable names
     var, var2 = data[[Constants.VAR, Constants.VAR2]].to_numpy().T
+    
+    print(var)
 
     # Return results in a dictionary
     return {
