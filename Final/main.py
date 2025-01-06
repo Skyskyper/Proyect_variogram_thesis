@@ -17,7 +17,7 @@ def main():
     dataid = ids.add_ids(input_file)
     
     data_rotated_id = p_rotation.apply_rotation(dataid,matrix)
-    
+    print(data_rotated_id)
     -
     
     
