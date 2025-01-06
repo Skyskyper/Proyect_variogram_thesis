@@ -1,20 +1,31 @@
 import numpy as np
+import pandas as pd
 
-'''
-def add_ids(rotated_positions):
-    # Crear un array con IDs enteros y posiciones concatenados
-    rotated_positions_with_ids = np.column_stack((np.arange(len(rotated_positions), dtype=int), rotated_positions))
-    return rotated_positions_with_ids
-'''
-def add_ids(data_rotated):
-    # Extraer las posiciones rotadas del diccionario
-    rotated_positions = data_rotated['rotated_positions']
+def add_ids(data):
+    """
+    Añade IDs únicos como una nueva columna al diccionario de arrays.
     
-    # Crear un array de IDs enteros y concatenarlos con las posiciones rotadas
-    ids = np.arange(len(rotated_positions), dtype=int).reshape(-1, 1)  # IDs como columna
-    rotated_positions_with_ids = np.hstack((ids, rotated_positions))  # Concatenar IDs y posiciones
+    Args:
+        input_file (dict): Diccionario con arrays de NumPy. 
+                           Los arrays deben tener el mismo número de filas.
+
+    Returns:
+        dict: Diccionario actualizado con una clave adicional 'dataid',
+              que contiene los IDs concatenados con las posiciones originales.
+    """
     
-    # Actualizar el diccionario data_rotated con los IDs añadidos
-    data_rotated['rotated_positions_with_ids'] = rotated_positions_with_ids
+    ids = np.arange(len(data), dtype=int).reshape(-1, 1)  # IDs como columna
     
-    return data_rotated
+    # Concatenar los IDs con las columnas originales
+    data_array = data.to_numpy()  # Convertir el DataFrame a un arreglo NumPy
+    
+    dataid = np.hstack((ids, data_array))  # Combinar los IDs con los datos
+    
+    dataid_array = np.hstack((ids, data_array))
+    
+    dataid = {'ID': dataid[:, 0].astype(int)}  # Primera columna como IDs enteros
+    for idx, col in enumerate(data.columns):
+        dataid[col] = dataid_array[:, idx + 1]
+        
+    return dataid
+

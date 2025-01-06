@@ -1,24 +1,24 @@
 
 from module import interface 
 from module import Load_file
-from module import p_rotation 
 from module import ids
+from module import p_rotation
+
 
 
 def main(): 
     
     #matrix = interface.create_3d_scene()
+    matrix = interface.final_rotation
     #print("Final Rotation Matrix:", matrix)
     
     input_file = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Versiones\\test_data.csv"
-    input_file = Load_file.load_data(input_file)
+    input_file = Load_file.load_data(input_file)    
+    dataid = ids.add_ids(input_file)
     
+    data_rotated_id = p_rotation.apply_rotation(dataid,matrix)
     
-    data_rotated = p_rotation.apply_rotation(input_file)
-    print(data_rotated.keys())
-    rotated_positions = data_rotated['rotated_positions']
-    print(rotated_positions)
-    
+    -
     
     
     

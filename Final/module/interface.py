@@ -12,7 +12,7 @@ from vpython import radians, cos, sin
 from vpython import *  # Ten cuidado con el uso de `*`, puede causar conflictos.
 
 
-
+'''
 
 # Variable global para almacenar la matriz final
 final_rotation = None
@@ -189,6 +189,9 @@ def create_3d_scene():
 
     return final_rotation
 
+
+'''
 final_rotation = [[0.4698463103929543, -0.8660254037844386, 0.17101007166283438], 
                 [0.8137976813493737, 0.5000000000000001, 0.2961981327260238], 
                   [-0.3420201433256687, 0.0, 0.9396926207859084]]
+                  

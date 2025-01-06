@@ -1,34 +1,26 @@
-import pandas as pd   
+
 import numpy as np 
 
-from .interface import final_rotation
-from .Constants import VAR,VAR2
 
-def apply_rotation(input_file):
-    
-    data = pd.read_csv(input_file)
+def apply_rotation(dataid, final_rotation):
+    # Asegúrate de que dataid sea un diccionario con las claves 'x', 'y', y 'Z'
+    if not all(key in dataid for key in ['x', 'y', 'Z']):
+        raise KeyError("dataid debe contener las claves 'x', 'y', y 'Z'")
 
-    # Extract position columns and convert to NumPy array (efficient bulk conversion)
-    positions = data[['x', 'y', 'Z']].to_numpy().T
+    # Extraemos las coordenadas 'x', 'y', 'Z' como arrays de NumPy
+    positions = np.array([dataid['x'], dataid['y'], dataid['Z']])
 
-    # Apply rotation directly using the global final_rotation
+    # Aplicamos la rotación utilizando la matriz final_rotation
     rotated_positions = np.dot(final_rotation, positions)
 
-    # Extract VAR and VAR2 columns using global variable names
-    var, var2 = data[[VAR,VAR2]].to_numpy().T
-    
-    print(var)
-
-    # Return results in a dictionary
-    return {
-        'rotated_positions': rotated_positions.T,  # Include full rotated positions (transposed back)
-        '''
-        'xr': rotated_positions[0],               # Rotated x-coordinates
-        'yr': rotated_positions[1],               # Rotated y-coordinates
-        'zr': rotated_positions[2],               # Rotated z-coordinates
-        '''
-        
-        'VAR': var,                                # First variable as NumPy array
-        'VAR2': var2                               # Second variable as NumPy array
-        
+    # Creamos un nuevo diccionario con las coordenadas rotadas y la columna 'ID'
+    data_rotated_id = {
+        'ID': rotated_positions.T,        # La columna 'ID' con las posiciones rotadas
+        'x_r': rotated_positions[0, :],   # Coordenadas rotadas en x
+        'y_r': rotated_positions[1, :],   # Coordenadas rotadas en y
+        'z_r': rotated_positions[2, :]    # Coordenadas rotadas en z
     }
+
+    # Devolvemos el diccionario con solo las variables rotadas y la columna 'ID'
+    return data_rotated_id
+

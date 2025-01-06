@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 def load_data(input_file=None, default_file='test_data.csv'):
     
@@ -11,4 +12,4 @@ def load_data(input_file=None, default_file='test_data.csv'):
     if not os.path.exists(input_file):
         raise FileNotFoundError(f"File not found: {input_file}")
     
-    return input_file
+    return pd.read_csv(input_file)
