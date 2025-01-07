@@ -3,6 +3,10 @@ from module import interface
 from module import Load_file
 from module import ids
 from module import p_rotation
+from module import pairs
+from module.Constants import *
+import cProfile
+import pstats
 
 
 
@@ -17,15 +21,29 @@ def main():
     dataid = ids.add_ids(input_file)
     
     data_rotated_id = p_rotation.apply_rotation(dataid,matrix)
-    print(data_rotated_id)
     
     
+    distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC)
+    print ( distances_dict.keys())
+    print ( pairs_dict.keys())
     
-    
-      
-    
-
-
+def wrapper_for_profiling():
+    # Envoltorio que llama a generate_pairs con los argumentos correctos
+    main()
+    #distances, pairs = classify_distances(distances, pairs,      
 
 if __name__ == "__main__":
-    main()
+    
+    profiler = cProfile.Profile()
+    
+    profiler.enable()
+    
+    wrapper_for_profiling()
+    
+    profiler.disable()
+
+    # Crear un objeto pstats para procesar los resultados
+    stats = pstats.Stats(profiler)
+    # Ordenar por el tiempo total y mostrar solo las 10 funciones más lentas
+    stats.strip_dirs().sort_stats('tottime').print_stats(50)
+    
