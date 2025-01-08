@@ -26,6 +26,7 @@ def main():
     
     
     distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
+    print(pairs_dict)
     
     '''
     printeo = distances_dict
