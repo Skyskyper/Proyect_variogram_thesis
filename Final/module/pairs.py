@@ -49,17 +49,17 @@ def generate_pairs(data_rotated_id, VH,FC):
 
 '''
 
-import numpy as np
-import itertools
-
 def generate_pairs(data_rotated_id, VH, FC):
+    print(data_rotated_id)
     # Verificar el tipo de 'ID' y manejar listas de coordenadas
-    id_list = data_rotated_id['ID'][:200]  # Acceso al diccionario (limitado a los primeros 200 IDs)
+    id_list = data_rotated_id['ID'][:500] 
+    #print(id_list)# Acceso al diccionario (limitado a los primeros 200 IDs)
     #print(data_rotated_id.keys())
     #print("Contenido de 'data_rotated_id['ID'][:200]':", id_list[:10])  # Muestra los primeros 10 elementos
 
     # Convertir las listas de coordenadas en identificadores únicos (como cadenas)
     def convert_to_hashable(value):
+        #print(f"Valor de entrada: {value}, tipo: {type(value)}")
         if isinstance(value, np.ndarray):  # Si es un numpy ndarray
             return str(value.tolist())  # Convertir el ndarray a una lista y luego a cadena
         elif isinstance(value, list):  # Si es una lista
@@ -78,9 +78,9 @@ def generate_pairs(data_rotated_id, VH, FC):
     idx2_array = np.array([id_to_index[id2] for id2 in pairs[:, 1]])  # Índices de ID_2
 
     # Coordenadas en forma de arrays
-    x_coords = data_rotated_id['x_r'][:200]
-    y_coords = data_rotated_id['y_r'][:200]
-    z_coords = data_rotated_id['z_r'][:200]
+    x_coords = data_rotated_id['x_r'][:500]
+    y_coords = data_rotated_id['y_r'][:500]
+    z_coords = data_rotated_id['z_r'][:500]
     
     z_distances = np.abs(z_coords[idx1_array] - z_coords[idx2_array])
     mask = z_distances <= (VH * FC)
@@ -109,5 +109,8 @@ def generate_pairs(data_rotated_id, VH, FC):
         'ID_2': valid_pairs[:, 1],
     }
 
+    pairs_dict['ID_1'] += 1  
+    pairs_dict['ID_2'] += 1
+    
     return distances_dict, pairs_dict
 

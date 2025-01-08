@@ -15,7 +15,7 @@ def apply_rotation(dataid, final_rotation):
 
     # Creamos un nuevo diccionario con las coordenadas rotadas y la columna 'ID'
     data_rotated_id = {
-        'ID': rotated_positions.T,        # La columna 'ID' con las posiciones rotadas
+        'ID': dataid['ID'],         # La columna 'ID' con las posiciones rotadas
         'x_r': rotated_positions[0, :],   # Coordenadas rotadas en x
         'y_r': rotated_positions[1, :],   # Coordenadas rotadas en y
         'z_r': rotated_positions[2, :]    # Coordenadas rotadas en z

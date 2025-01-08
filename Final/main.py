@@ -24,8 +24,9 @@ def main():
     
     
     distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC)
-    print ( distances_dict.keys())
-    print ( pairs_dict.keys())
+    
+    print(list(pairs_dict.items())[:20])
+    
     
 def wrapper_for_profiling():
     # Envoltorio que llama a generate_pairs con los argumentos correctos
