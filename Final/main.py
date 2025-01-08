@@ -8,6 +8,8 @@ from module.Constants import *
 import cProfile
 import pstats
 
+import os     
+import pandas as pd 
 
 
 def main(): 
@@ -23,15 +25,28 @@ def main():
     data_rotated_id = p_rotation.apply_rotation(dataid,matrix)
     
     
-    distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC)
+    distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    print(list(pairs_dict.items())[:20])
+    
+    printeo = distances_dict
+    nombre = "distnace3.csv"
+    # Ruta de la carpeta donde se guardará el archivo
+    folder_path = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Final\\test"
+    # Crear la carpeta si no existe
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path) 
+    # Convertir el diccionario a un DataFrame
+    df = pd.DataFrame(printeo)
+    # Ruta completa del archivo CSV
+    output_file = os.path.join(folder_path, nombre)
+    # Guardar el DataFrame como CSV
+    df.to_csv(output_file, index=False)
     
     
 def wrapper_for_profiling():
     # Envoltorio que llama a generate_pairs con los argumentos correctos
     main()
-    #distances, pairs = classify_distances(distances, pairs,      
+    
 
 if __name__ == "__main__":
     
