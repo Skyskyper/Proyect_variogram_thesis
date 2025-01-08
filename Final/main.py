@@ -27,7 +27,7 @@ def main():
     
     distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    
+    '''
     printeo = distances_dict
     nombre = "distnace3.csv"
     # Ruta de la carpeta donde se guardará el archivo
@@ -41,7 +41,7 @@ def main():
     output_file = os.path.join(folder_path, nombre)
     # Guardar el DataFrame como CSV
     df.to_csv(output_file, index=False)
-    
+    '''
     
 def wrapper_for_profiling():
     # Envoltorio que llama a generate_pairs con los argumentos correctos
