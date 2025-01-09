@@ -3,8 +3,10 @@ from module import interface
 from module import Load_file
 from module import ids
 from module import p_rotation
-from module import pairs
+from module import Pairs
+from module import class_dist
 from module.Constants import *
+
 import cProfile
 import pstats
 
@@ -24,13 +26,19 @@ def main():
     
     data_rotated_id = p_rotation.apply_rotation(dataid,matrix)
     
+    distances_dict, pairs_dict = Pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    distances_dict, pairs_dict = pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
-    print(pairs_dict)
+    print(distances_dict.keys())
+    print(pairs_dict.keys())
+    
+    distances, pairs = class_dist.classify_distances(distances_dict, pairs_dict, AH)
+    
+    
+    
     
     '''
-    printeo = distances_dict
-    nombre = "distnace3.csv"
+    printeo = distances
+    nombre = "distnace2.csv"
     # Ruta de la carpeta donde se guardará el archivo
     folder_path = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Final\\test"
     # Crear la carpeta si no existe
