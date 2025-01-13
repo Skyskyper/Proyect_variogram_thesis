@@ -424,6 +424,8 @@ def classify_point_in_longitudinal_areas(distances, pairs):
         x_rel = distance_x
         y_rel = distance_y
         width = AH
+        
+        
         proj = x_rel * dx + y_rel * dy
         b = np.sqrt(distance_x**2 + distance_y**2 - proj**2)
         # Verificación si la variable está dentro de la normal

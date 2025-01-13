@@ -5,6 +5,7 @@ from module import ids
 from module import p_rotation
 from module import Pairs
 from module import class_dist
+from module import Class_long
 from module.Constants import *
 
 import cProfile
@@ -28,17 +29,20 @@ def main():
     
     distances_dict, pairs_dict = Pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    print(distances_dict.keys())
+    #print(distances_dict.keys())
     print(pairs_dict.keys())
     
     distances, pairs = class_dist.classify_distances(distances_dict, pairs_dict, AH)
+    
+    pairs = Class_long.classify_point_in_longitudinal_areas(distances,pairs,AH,VH)
+    print(pairs)
     
     
     
     
     '''
-    printeo = distances
-    nombre = "distnace2.csv"
+    printeo = pairs_dict
+    nombre = "pairs2.csv"
     # Ruta de la carpeta donde se guardará el archivo
     folder_path = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Final\\test"
     # Crear la carpeta si no existe
@@ -51,6 +55,7 @@ def main():
     # Guardar el DataFrame como CSV
     df.to_csv(output_file, index=False)
     '''
+    
     
 def wrapper_for_profiling():
     # Envoltorio que llama a generate_pairs con los argumentos correctos
