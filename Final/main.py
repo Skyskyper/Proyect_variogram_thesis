@@ -25,25 +25,24 @@ def main():
     input_file = Load_file.load_data(input_file)    
     dataid = ids.add_ids(input_file)
     
+    
     data_rotated_id = p_rotation.apply_rotation(dataid,matrix)
     
     distances_dict, pairs_dict = Pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    #print(distances_dict.keys())
-    print(pairs_dict.keys())
     
-    distances, pairs = class_dist.classify_distances(distances_dict, pairs_dict, AH)
+    pairs_dict = class_dist.classify_distances(distances_dict, pairs_dict, AH)
     
-    pairs = Class_long.classify_point_in_longitudinal_areas(distances,pairs,AH,VH)
-    print(pairs)
+    pairs_dict, distances_dict = Class_long.classify_point_in_longitudinal_areas(distances_dict,pairs_dict,AH,VH)
+    
     
     
     
     
     '''
     printeo = pairs_dict
-    nombre = "pairs2.csv"
-    # Ruta de la carpeta donde se guardará el archivo
+    nombre = "pairs1.csv"
+    # Ruta de la carpeta donde se guardará el archivo  
     folder_path = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Final\\test"
     # Crear la carpeta si no existe
     if not os.path.exists(folder_path):

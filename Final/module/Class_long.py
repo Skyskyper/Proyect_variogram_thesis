@@ -1,6 +1,6 @@
 import numpy as np 
 
-def classify_point_in_longitudinal_areas(distances, pairs,AH,VH):
+def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
     
     # Precalcula ángulos y anchura si AH es constante y se tiene un número fijo de sectores
     angle_cache = {}
@@ -21,40 +21,24 @@ def classify_point_in_longitudinal_areas(distances, pairs,AH,VH):
         return b_squared <= half_width_squared
 
     
-    # Inicializar una lista para almacenar si los pares están dentro de la tolerancia de normalidad
-    inside_normality_tolerance = []
+    # Clasificar directamente usando las distancias y sectores del diccionario `distances`
+    inside_normality_tolerance = np.array([
+        classify_normal(dx, dy, sector)
+        for dx, dy, sector in zip(distances_dict['Distance_x'], distances_dict['Distance_y'], pairs_dict['sector'])
+    ])
 
-    # Iterar sobre los pares y clasificar cada uno
-    for i in range(len(pairs['ID_1'])):
-        # Encontrar las distancias correspondientes en el diccionario `distances`
-        id_1 = pairs['ID_1'][i]
-        id_2 = pairs['ID_2'][i]
-        
-        # Usar np.where para encontrar el índice donde coinciden ID_1 e ID_2
-        idx = np.where((distances['ID_1'] == id_1) & (distances['ID_2'] == id_2))
-        
-        if len(idx[0]) > 0:
-            # Obtener el primer índice válido
-            index = idx[0][0]
-            
-            distance_x = distances['Distance_x'][index]
-            distance_y = distances['Distance_y'][index]
-            sector = pairs['sector'][i]
+    # Filtrar los índices donde los pares están dentro de la tolerancia
+    filtered_indices = np.where(inside_normality_tolerance)[0]
 
-            # Clasificar si el punto está dentro de la tolerancia de normalidad
-            is_inside = classify_normal(distance_x, distance_y, sector)
-            inside_normality_tolerance.append(is_inside)
-        else:
-            # Si no hay un índice válido, agregar `False` como predeterminado
-            inside_normality_tolerance.append(False)
-
-    # Filtrar los pares que están dentro de la normalidad
-    filtered_indices = np.where(np.array(inside_normality_tolerance))[0]
     
+    # Se prefiere aplicar el filtro automaticamente o ver cuales entran y cuales no 
+    
+    #pairs = {key: np.array(value)[filtered_indices] for key, value in pairs_dict.items()}
+    pairs_dict['Normal'] = inside_normality_tolerance
+    
+    distances_dict = {key: np.array(value)[filtered_indices] for key, value in distances_dict.items()}
 
-    # Actualizar los arreglos de los diccionarios `pairs` y `distances` con los índices filtrados
-    pairs = {key: np.array(value)[filtered_indices] for key, value in pairs.items()}
-    distances = {key: np.array(value)[filtered_indices] for key, value in distances.items()}
+    # Devolver los diccionarios actualizados
+    return pairs_dict, distances_dict
 
-    return pairs
 
