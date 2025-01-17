@@ -6,11 +6,11 @@ from module import p_rotation
 from module import Pairs
 from module import class_dist
 from module import Class_long
+from module import step 
 from module.Constants import *
 
 import cProfile
 import pstats
-
 import os     
 import pandas as pd 
 
@@ -35,6 +35,7 @@ def main():
     
     pairs_dict, distances_dict = Class_long.classify_point_in_longitudinal_areas(distances_dict,pairs_dict,AH,VH)
     
+    pairs_dict = step.step(distances_dict, pairs_dict,VH)
     
     
     
@@ -74,5 +75,5 @@ if __name__ == "__main__":
     # Crear un objeto pstats para procesar los resultados
     stats = pstats.Stats(profiler)
     # Ordenar por el tiempo total y mostrar solo las 10 funciones más lentas
-    stats.strip_dirs().sort_stats('tottime').print_stats(50)
+    stats.strip_dirs().sort_stats('tottime').print_stats(10)
     

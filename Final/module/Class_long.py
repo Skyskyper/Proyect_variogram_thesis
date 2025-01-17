@@ -30,13 +30,18 @@ def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
     # Filtrar los índices donde los pares están dentro de la tolerancia
     filtered_indices = np.where(inside_normality_tolerance)[0]
 
+    #pairs_dict['Normal'] = inside_normality_tolerance
     
-    # Se prefiere aplicar el filtro automaticamente o ver cuales entran y cuales no 
-    
-    #pairs = {key: np.array(value)[filtered_indices] for key, value in pairs_dict.items()}
-    pairs_dict['Normal'] = inside_normality_tolerance
-    
+    total_pares_antes = len(pairs_dict['ID_1'])
+    total_pares_despues = len(filtered_indices)
+    pares_eliminados = total_pares_antes - total_pares_despues
+
+    # Aplicar el filtro
+    pairs_dict = {key: np.array(value)[filtered_indices] for key, value in pairs_dict.items()}
     distances_dict = {key: np.array(value)[filtered_indices] for key, value in distances_dict.items()}
+
+    # Imprimir la cantidad de pares eliminados
+    #print(f"Cantidad de pares eliminados por el filtro: {pares_eliminados}")
 
     # Devolver los diccionarios actualizados
     return pairs_dict, distances_dict
