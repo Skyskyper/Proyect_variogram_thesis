@@ -7,6 +7,7 @@ from module import Pairs
 from module import class_dist
 from module import Class_long
 from module import step 
+from module import var_diference
 from module.Constants import *
 
 import cProfile
@@ -30,17 +31,18 @@ def main():
     
     distances_dict, pairs_dict = Pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    
     pairs_dict = class_dist.classify_distances(distances_dict, pairs_dict, AH)
     
     pairs_dict, distances_dict = Class_long.classify_point_in_longitudinal_areas(distances_dict,pairs_dict,AH,VH)
     
     pairs_dict = step.step(distances_dict, pairs_dict,VH)
     
+    pairs_dict = var_diference.diferencias(pairs_dict,dataid,VAR,VAR2)
     
     
     
-    '''
+    
+    
     printeo = pairs_dict
     nombre = "pairs1.csv"
     # Ruta de la carpeta donde se guardará el archivo  
@@ -54,7 +56,7 @@ def main():
     output_file = os.path.join(folder_path, nombre)
     # Guardar el DataFrame como CSV
     df.to_csv(output_file, index=False)
-    '''
+    
     
     
 def wrapper_for_profiling():

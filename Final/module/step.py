@@ -8,7 +8,7 @@ def step(distances, pairs, VH):
     distance_y = distances['Distance_y']#.flatten()
 
     # Calcular el valor de 'step'
-    #step_values = ((distance_x**2 + distance_y**2) / (VH**2)).astype(int)
+    step_values = ((distance_x**2 + distance_y**2) / (VH**2)).astype(int)
     
 
     # Asignar los valores de 'step' directamente a los pares
