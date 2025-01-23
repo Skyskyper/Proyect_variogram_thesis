@@ -8,6 +8,7 @@ from module import class_dist
 from module import Class_long
 from module import step 
 from module import var_diference
+from module import variogram 
 from module.Constants import *
 
 import cProfile
@@ -39,10 +40,12 @@ def main():
     
     pairs_dict = var_diference.diferencias(pairs_dict,dataid,VAR,VAR2)
     
+    print(pairs_dict.keys())
+    pairs_fin = variogram.variogram(pairs_dict,VH,VAR,VAR2)
     
+    print(pairs_fin)
     
-    
-    
+    '''
     printeo = pairs_dict
     nombre = "pairs1.csv"
     # Ruta de la carpeta donde se guardará el archivo  
@@ -56,7 +59,7 @@ def main():
     output_file = os.path.join(folder_path, nombre)
     # Guardar el DataFrame como CSV
     df.to_csv(output_file, index=False)
-    
+    '''
     
     
 def wrapper_for_profiling():
