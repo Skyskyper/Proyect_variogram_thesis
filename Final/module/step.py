@@ -1,6 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt  
-
+##asda
 def step(distances, pairs, VH):
     
     # Asegurarse de que los valores de distancia sean unidimensionales
