@@ -11,35 +11,15 @@ Rotation Escene
 Load data 
     Crear un cuadro para que se te abra el buscador de archivos
 
-Apply rotation 
-    revisar si merece la pena sacar todos los diccionarios
-
-Add ids
-    Sin cambios 
-
 Generate pairs
-    Mirar tamaño maximo de computacion 
     Mirar el factor de la tolerancia vertical 
-    Mirar necesidad de incremenar valores +1 
+    
 
 classify_distances
-    Mirar lo del -1 
     Revisar que se asigna bien sector 
 
-classify_point_in_longitudinal_areas
-    mirar que codigo es mas eficiente 
-    mirar forma mas eficiente de hacer el filtro 
-    mirar si merece la pena aplicarlo a distances  
-
-Step 
-    mirar si aplicar el filtro ahora o antes 
-
-create_var_dicts
-    Mirar si merce la pena hacerse los diccionarios ahora o antes
-
 diferencias
-    mirar el coste computacional del mapeo
-    mirar que se ejecute tanto con var como con con var2
+    mirar que hacer con los dos ultimos valores
 
  Variogram 
     mirar el proceso de creacion, que merce l pena agrupar primero 
@@ -48,10 +28,6 @@ diferencias
     mirar estilo del plot
     mirar el dataframe resultante
 
-main 
-    Mirar que hacer con los print 
-    cambiar nombre de los diccionarios para homogeneizar 
-    mirar la seleccion de variables globales 
 
 wrapper_for_profiling
     mirar si hay manera de mejorar las stats y como... 
