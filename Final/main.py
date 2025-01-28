@@ -9,7 +9,7 @@ from module import Class_long
 from module import step 
 from module import var_diference
 from module import variogram 
-from module.Constants import AH,VH,VAR,VAR2,FC,iterations
+from module.Constants import AH,VH,VAR,VAR2,FC,iterations,max_step
 
 import cProfile
 import pstats
@@ -19,8 +19,8 @@ import pandas as pd
 
 def main(): 
     
-    #matrix = interface.create_3d_scene()
-    matrix = interface.final_rotation_try
+    matrix = interface.create_3d_scene()
+    #matrix = interface.final_rotation_try
     print("Final Rotation Matrix:", matrix)
     
     input_file = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Versiones\\test_data.csv"
@@ -40,7 +40,7 @@ def main():
     
     pairs_dict = var_diference.diferencias(pairs_dict,dataid,VAR,VAR2)
     
-    pairs_fin = variogram.variogram(pairs_dict,VH,VAR,VAR2)
+    pairs_fin = variogram.variogram(pairs_dict,VH,VAR,VAR2,max_step)
     
     '''
     printeo = pairs_dict

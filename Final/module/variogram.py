@@ -64,10 +64,12 @@ def variogram(pairs_dict,VH,VAR,VAR2):
 
 '''
 
-def variogram(pairs_dict, VH, VAR, VAR2):
+def variogram(pairs_dict, VH, VAR, VAR2,max_step):
     # Calcular el máximo del 'step' y definir los límites de los bins
-    max_step = np.max(pairs_dict['step'])
+    
     bin_limits = list(range(0, int(max_step + VH), int(VH)))
+    
+    #TODO revisar si es necesario sumar VH 
 
     # Inicializar lista para almacenar los resultados
     results = []
@@ -91,8 +93,8 @@ def variogram(pairs_dict, VH, VAR, VAR2):
             if np.any(bin_mask):  # Solo si hay datos en el bin
                 # Calcular media de 'step', 'VAR' y 'VAR2' en el bin actual
                 media_step = np.mean(sector_steps[bin_mask])
-                media_VAR = np.mean(sector_VAR[bin_mask])  # VAR ya contiene el valor al cuadrado
-                media_VAR2 = np.mean(sector_VAR2[bin_mask])  # VAR2 ya contiene el valor al cuadrado
+                media_VAR = np.mean(sector_VAR[bin_mask]) / 2  # VAR ya contiene el valor al cuadrado
+                media_VAR2 = np.mean(sector_VAR2[bin_mask]) / 2  # VAR2 ya contiene el valor al cuadrado
             else:
                 # Definir valores para bins vacíos
                 media_step = (bin_limits[bin_index - 1] + bin_limits[bin_index]) / 2

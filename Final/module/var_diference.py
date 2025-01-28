@@ -22,11 +22,14 @@ def diferencias(pairs_dict, dataid,VAR,VAR2):
     for id_1, id_2 in zip(id_1_indices, id_2_indices):
         # Calcular y redondear diferencias para VAR
         diff_var = (id_to_var[id_2] - id_to_var[id_1]) ** 2
-        var_diffs_squared.append(np.round(diff_var, 3))
+        var_diffs_squared.append(diff_var)
 
         # Calcular y redondear diferencias para VAR2
         diff_var2 = (id_to_var2[id_2] - id_to_var2[id_1]) ** 2
-        var2_diffs_squared.append(np.round(diff_var2, 3))
+        var2_diffs_squared.append(diff_var2)
+        
+        #TODO hacer producto de las dos diferencias ( pos y neg ) 
+        #TODO mirar forma de colocar un round si es seleccionado 
         
 
     # Añadir los resultados como nuevos arrays en el diccionario `pairs_dict`

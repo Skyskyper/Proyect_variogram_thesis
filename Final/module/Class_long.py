@@ -5,13 +5,15 @@ def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
     # Precalcula ángulos y anchura si AH es constante y se tiene un número fijo de sectores
     angle_cache = {}
     half_width_squared = (VH / 2) #** 2
-    total_sectors = int(360/AH)
+    total_sectors = int(180/AH)
 
     for s in range(total_sectors):  # total_sectors es el número de sectores que tienes
         angle_bisectrix = s * AH + (AH / 2)
         angle_rad = np.radians(angle_bisectrix)
         angle_cache[s] = (np.cos(angle_rad), np.sin(angle_rad))
-        
+    
+    
+    #TODO revisar indexacion entre modulos dist y long
 
     def classify_normal(distance_x, distance_y, sector):
         dx, dy = angle_cache[sector]
@@ -32,9 +34,9 @@ def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
 
     #pairs_dict['Normal'] = inside_normality_tolerance
     
-    total_pares_antes = len(pairs_dict['ID_1'])
-    total_pares_despues = len(filtered_indices)
-    pares_eliminados = total_pares_antes - total_pares_despues
+    #total_pares_antes = len(pairs_dict['ID_1'])
+    #total_pares_despues = len(filtered_indices)
+    #pares_eliminados = total_pares_antes - total_pares_despues
 
     # Aplicar el filtro
     pairs_dict = {key: np.array(value)[filtered_indices] for key, value in pairs_dict.items()}

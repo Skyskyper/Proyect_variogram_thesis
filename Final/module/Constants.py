@@ -5,3 +5,4 @@ VAR = "Mg" # Variable 1
 VAR2 = "Ni" # Variable 2
 FC = 0.5
 iterations = 1000
+max_step = 200
