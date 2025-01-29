@@ -19,8 +19,8 @@ import pandas as pd
 
 def main(): 
     
-    matrix = interface.create_3d_scene()
-    #matrix = interface.final_rotation_try
+    #matrix = interface.create_3d_scene()
+    matrix = interface.final_rotation_try
     print("Final Rotation Matrix:", matrix)
     
     input_file = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Versiones\\test_data.csv"

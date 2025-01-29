@@ -6,5 +6,7 @@ def classify_distances(distances, pairs, AH):
     angles = np.degrees(np.arctan2(distances['Distance_y'], distances['Distance_x'])) % 180
     pairs['sector'] = (angles // AH).astype(int)
     
+    print(np.unique(pairs['sector']))
+
 
     return pairs

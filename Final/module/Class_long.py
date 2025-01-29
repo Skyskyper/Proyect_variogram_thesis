@@ -11,7 +11,7 @@ def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
         angle_bisectrix = s * AH + (AH / 2)
         angle_rad = np.radians(angle_bisectrix)
         angle_cache[s] = (np.cos(angle_rad), np.sin(angle_rad))
-    
+        
     
     #TODO revisar indexacion entre modulos dist y long
 
@@ -28,7 +28,10 @@ def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
         classify_normal(dx, dy, sector)
         for dx, dy, sector in zip(distances_dict['Distance_x'], distances_dict['Distance_y'], pairs_dict['sector'])
     ])
-
+    
+    for clave, array in pairs_dict.items():
+        print(f"Clave: {clave}, Cantidad de valores: {array.size}")
+    
     # Filtrar los índices donde los pares están dentro de la tolerancia
     filtered_indices = np.where(inside_normality_tolerance)[0]
 
@@ -42,6 +45,8 @@ def classify_point_in_longitudinal_areas(distances_dict , pairs_dict ,AH,VH):
     pairs_dict = {key: np.array(value)[filtered_indices] for key, value in pairs_dict.items()}
     distances_dict = {key: np.array(value)[filtered_indices] for key, value in distances_dict.items()}
 
+    for clave, array in pairs_dict.items():
+        print(f"Clave: {clave}, Cantidad de valores: {array.size}")
     # Imprimir la cantidad de pares eliminados
     #print(f"Cantidad de pares eliminados por el filtro: {pares_eliminados}")
 

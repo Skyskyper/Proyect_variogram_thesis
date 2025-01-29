@@ -35,6 +35,8 @@ def diferencias(pairs_dict, dataid,VAR,VAR2):
     # Añadir los resultados como nuevos arrays en el diccionario `pairs_dict`
     pairs_dict[VAR] = np.array(var_diffs_squared)
     pairs_dict[VAR2] = np.array(var2_diffs_squared)
+    
+    
 
     return pairs_dict
 

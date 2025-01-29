@@ -142,6 +142,7 @@ def variogram(pairs_dict, VH, VAR, VAR2,max_step):
 
     # Mostrar el gráfico
     plt.show()
+    
 
     return result_df
 

@@ -14,8 +14,9 @@ def step(distances, pairs, VH):
     # Asignar los valores de 'step' directamente a los pares
     pairs['step'] = step_values
     
-    plt.hist(pairs['step'],bins = 10)    
-    plt.show()
+    
+    #plt.hist(pairs['step'],bins = 10)    
+    #plt.show()
     
 
     return pairs
