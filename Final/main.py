@@ -19,8 +19,8 @@ import pandas as pd
 
 def main(): 
     
-    #matrix = interface.create_3d_scene()
-    matrix = interface.final_rotation_try
+    matrix = interface.create_3d_scene()
+    #matrix = interface.final_rotation_try
     print("Final Rotation Matrix:", matrix)
     
     input_file = "C:\\Users\\marsa\\OneDrive\\GitHub_ordenado\\Versiones\\test_data.csv"
@@ -32,7 +32,13 @@ def main():
     
     distances_dict, pairs_dict = Pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
+    
     pairs_dict = class_dist.classify_distances(distances_dict, pairs_dict, AH)
+    
+    for clave, array in pairs_dict.items():
+        print(f"Claveppp: {clave}, Cantidad de valores: {array.size}")
+    for clave, array in distances_dict.items():
+        print(f"Clavedddd: {clave}, Cantidad de valores: {array.size}")
     
     pairs_dict, distances_dict = Class_long.classify_point_in_longitudinal_areas(distances_dict,pairs_dict,AH,VH)
     
@@ -41,6 +47,7 @@ def main():
     pairs_dict = var_diference.diferencias(pairs_dict,dataid,VAR,VAR2)
     
     pairs_fin = variogram.variogram(pairs_dict,VH,VAR,VAR2,max_step)
+  
     
     '''
     printeo = pairs_dict

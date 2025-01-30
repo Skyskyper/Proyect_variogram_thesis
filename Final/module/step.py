@@ -15,8 +15,8 @@ def step(distances, pairs, VH):
     pairs['step'] = step_values
     
     
-    #plt.hist(pairs['step'],bins = 10)    
-    #plt.show()
+    plt.hist(pairs['step'],bins = 10)    
+    plt.show()
     
 
     return pairs

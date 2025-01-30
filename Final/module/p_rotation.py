@@ -9,6 +9,9 @@ def apply_rotation(dataid, final_rotation):
 
     # Extraemos las coordenadas 'x', 'y', 'Z' como arrays de NumPy
     positions = np.array([dataid['x'], dataid['y'], dataid['Z']])
+    
+    #print(positions.shape[1])
+    
 
     # Aplicamos la rotación utilizando la matriz final_rotation
     rotated_positions = np.dot(final_rotation, positions)
