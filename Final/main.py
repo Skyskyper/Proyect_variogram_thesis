@@ -32,7 +32,6 @@ def main():
     
     distances_dict, pairs_dict = Pairs.generate_pairs(data_rotated_id,VH,FC,iterations)
     
-    
     pairs_dict = class_dist.classify_distances(distances_dict, pairs_dict, AH)
     
     for clave, array in pairs_dict.items():
